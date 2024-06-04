@@ -1,0 +1,27 @@
+{
+  "name": "wetube",
+  "version": "1.0.0",
+  "description": "Youtube Cloning",
+  "scripts": {
+    "dev": "nodemon --exec babel-node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coco0327/wetube.git"
+  },
+  "author": "coco",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/coco0327/wetube/issues"
+  },
+  "homepage": "https://github.com/coco0327/wetube#readme",
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.6",
+    "@babel/node": "^7.24.6",
+    "@babel/preset-env": "^7.24.6",
+    "nodemon": "^3.1.3"
+  }
+}
