@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Youtube Cloning",
   "scripts": {
-    "dev": "nodemon --exec babel-node index"
+    "dev": "nodemon --exec babel-node src/server"
   },
   "repository": {
     "type": "git",
@@ -16,12 +16,14 @@
   },
   "homepage": "https://github.com/coco0327/wetube#readme",
   "dependencies": {
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "morgan": "^1.10.0"
   },
   "devDependencies": {
     "@babel/core": "^7.24.6",
     "@babel/node": "^7.24.6",
     "@babel/preset-env": "^7.24.6",
+    "ejs": "^3.1.10",
     "nodemon": "^3.1.3"
   }
 }
