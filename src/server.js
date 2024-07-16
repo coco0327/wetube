@@ -1,21 +1,18 @@
 import express from "express";
 import morgan from "morgan";
-import globalRouter from "./routers/globalRouter";
+import rootRouter from "./routers/rootRouter";
 import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
 
-const PORT = 8062;
-
-const app = express();
+export const app = express();
 const logger = morgan("dev");
 app.use(logger);
 
-app.set("veiw engine", "ejs");
+app.set("view engine", "pug");
+app.set("views", process.cwd() + "/src/views");
 
-app.use("/", globalRouter);
+app.use(express.urlencoded({ extended: true }));
+
+app.use("/", rootRouter);
 app.use("/users", userRouter);
 app.use("/videos", videoRouter);
-
-app.listen(PORT, () =>
-  console.log(`✅ Server Listening on Port http://localhost:${PORT} 🤡`)
-);
