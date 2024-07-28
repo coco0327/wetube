@@ -4,28 +4,49 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         link(rel="stylesheet" href="https://unpkg.com/mvp.css")
-        title #{pageTitle} | Wetube
+        title #{pageTitle} | #{siteName}
     body
         header
             h1=pageTitle
             nav
                 ul
                     if pageTitle == "Home" 
-                        li
-                            a(href="/videos/upload") Upload New Video
+                        
                         li 
                             a(href="/search") Search
-                        li 
-                            a(href="/register") Register
+                        if !loggedIn
+                            li 
+                                a(href="/login") Login
+                            li 
+                                a(href="/register") Register
+                        else
+                            li
+                                a(href="/videos/upload") Upload New Video
+                            li
+                                a(href="/users/edit") Edit Profile 
+                            li 
+                                a(href="/users/logout") Log out
+                            li 
+                                a(href=`/users/${loggedInUser._id}`) #{loggedInUser.name} 의 프로필
                     else 
                         li 
                             a(href="/") Home
-                        li
-                            a(href="/videos/upload") Upload New Video
                         li 
                             a(href="/search") Search
-                        li 
-                            a(href="/register") Register
+                        if !loggedIn
+                            li 
+                                a(href="/login") Login
+                            li 
+                                a(href="/register") Register
+                        else
+                            li
+                                a(href="/videos/upload") Upload New Video 
+                            li
+                                a(href="/users/edit") Edit Profile
+                            li 
+                                a(href="/users/logout") Log out
+                            li 
+                                a(href=`/users/${loggedInUser._id}`) #{loggedInUser.name} 의 프로필
         main
             block content
         include partials/footer.pug

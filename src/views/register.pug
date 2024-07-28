@@ -1,10 +1,17 @@
 extends base
 
 block content 
+    if errorMessage 
+        h2=errorMessage
     form(method="POST")
         input(name="name", type="text", placeholder="Name", required)
         input(name="email", type="email", placeholder="Email", required)
         input(name="password", type="password", placeholder="Password", required)
+        input(name="password2", type="password", placeholder="Confirm Passowrd", required)
         input(name="username", type="text", placeholder="Username", required)
-        input(name="location", type="text", placeholder="Location", required)
+        input(name="location", type="text", placeholder="Location")
         input(value="Register", type="submit")
+    hr
+    div 
+        span Have Account Already? 
+        a(href="/login") Login &rarr;

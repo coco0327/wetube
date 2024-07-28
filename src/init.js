@@ -1,10 +1,11 @@
+import "dotenv/config";
 import "./db";
 import { Video } from "./models/Video";
 import { User } from "./models/User";
 import { app } from "./server";
 
-const PORT = 8062;
-
-app.listen(PORT, () =>
-  console.log(`✅ Server Listening on Port http://localhost:${PORT} 🤡`)
+app.listen(process.env.PORT, () =>
+  console.log(
+    `✅ Server Listening on Port http://localhost:${process.env.PORT} 🤡`
+  )
 );

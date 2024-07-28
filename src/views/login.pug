@@ -1,0 +1,16 @@
+extends base
+
+block content 
+    if errorMessage 
+        h2=errorMessage
+    form(method="POST")
+        input(name="username", type="text", placeholder="Username", required)
+        input(name="password", type="password", placeholder="Password", required)
+        input(value="Login", type="submit")
+        br
+        a(href="/users/github/start") Continue With Github &rarr;
+    hr
+    div 
+        span Don't Have Account Yet? 
+        a(href="/join") Register &rarr;
+        
