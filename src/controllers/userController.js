@@ -53,13 +53,13 @@ export const postLogin = async (req, res) => {
   const { username, password } = req.body;
   const pageTitle = "Log In";
   const user = await User.findOne({ username, socialOnly: false });
-  const passCheck = await bcrypt.compare(password, user.password);
   if (!user) {
     return res.status(400).render("login", {
       pageTitle,
       errorMessage: "An Account With This Username Doesn't Exist",
     });
   }
+  const passCheck = await bcrypt.compare(password, user.password);
   if (!passCheck) {
     return res.status(400).render("login", {
       pageTitle,
@@ -247,7 +247,10 @@ export const see = async (req, res) => {
   const {
     params: { id },
   } = req;
-  const user = await User.findById(id).populate("videos");
+  const user = await User.findById(id).populate({
+    path: "videos",
+    populate: { path: "owner", model: "User" },
+  });
   console.log(user);
   if (!user) {
     return res.status(404).render("404", { pageTitle: "User Not Found" });

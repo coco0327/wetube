@@ -16,7 +16,7 @@ const videoSchema = new mongoose.Schema({
     trim: true,
   },
   meta: {
-    veiws: { type: Number, default: 0 },
+    views: { type: Number, default: 0 },
     rating: { type: Number, default: 0 },
   },
   owner: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "User" },
