@@ -1,10 +1,11 @@
-const { watch } = require("fs");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const { plugin } = require("mongoose");
 const path = require("path");
 
 module.exports = {
-  entry: "./src/client/js/app.js",
+  entry: {
+    app: "./src/client/js/app.js",
+    videoPlayer: "./src/client/js/videoPlayer.js",
+  },
   plugins: [
     new MiniCssExtractPlugin({
       filename: "css/styles.css",
@@ -13,7 +14,7 @@ module.exports = {
   watch: true,
   mode: "development",
   output: {
-    filename: "js/app.js",
+    filename: "js/[name].js",
     path: path.resolve(__dirname, "assets"),
     clean: true,
   },

@@ -1,15 +1,36 @@
 extends base.pug
 
 block content
-    video(src=`/${video.videoUrl}`, controls)
-    div
-        p=video.description
-        small=video.createdAt
-    div 
-        small Uploaded by 
-        a(href=`/users/${video.owner._id}`)=video.owner.name
-    if String(video.owner._id) === String(loggedInUser._id)
+    div.video-player__container
+        video(src=`/${video.videoUrl}`)
+        div.video-player__controls
+            div.video-player__play
+                span.video-player__playBtn
+                    i.fas.fa-play
+            div.video-player__time-display
+                span.video-player__time-display--current 00:00
+                span  / 
+                span.video-player__time-display--total 00:00
+            input(type="range", step="1", value="0", min="0").video-player__timeline
+            div.video-player__volume
+                input(type="range", step="0.1", value="0.5", min="0", max="1").video-player__volume--bar
+                span.video-player__muteBtn 
+                    i.fas.fa-volume-up
+            div.video-player__fullscreen
+                span.video-player__fullscreenBtn
+                    i.fas.fa-expand
+    //
         div
-            a(href=`${video.id}/edit`) Edit Video &rarr;
-        div
-            a(href=`${video.id}/delete`) Delete Video &rarr;
+            p=video.description
+            small=video.createdAt
+        div 
+            small Uploaded by 
+            a(href=`/users/${video.owner._id}`)=video.owner.name
+        if String(video.owner._id) === String(loggedInUser._id)
+            div
+                a(href=`${video.id}/edit`) Edit Video &rarr;
+            div
+                a(href=`${video.id}/delete`) Delete Video &rarr;
+
+block script 
+    script(src="/assets/js/videoPlayer.js")
