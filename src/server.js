@@ -1,11 +1,15 @@
 import express from "express";
 import morgan from "morgan";
 
+//Middlewares
+import { localsMiddleware } from "./middlewares/localsMiddleware";
+import { sessionMiddleware } from "./middlewares/sessionMiddleware";
+
+// Routers
 import rootRouter from "./routers/rootRouter";
 import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
-import { localsMiddleware } from "./middlewares/localsMiddleware";
-import { sessionMiddleware } from "./middlewares/sessionMiddleware";
+import { apiRouter } from "./routers/apiRouter";
 
 export const app = express();
 const logger = morgan("dev");
@@ -24,3 +28,4 @@ app.use("/assets", express.static("assets"));
 app.use("/", rootRouter);
 app.use("/users", userRouter);
 app.use("/videos", videoRouter);
+app.use("/api", apiRouter);

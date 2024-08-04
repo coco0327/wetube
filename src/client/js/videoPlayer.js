@@ -86,6 +86,15 @@ const handleTimeUpdate = () => {
   timeline.value = Math.floor(video.currentTime);
 };
 
+const handleEnded = () => {
+  const {
+    dataset: { id },
+  } = videoContainer;
+  fetch(`/api/videos/${id}/views`, {
+    method: "POST",
+  });
+};
+
 const handleTimelineChange = (event) => {
   const {
     target: { value },
@@ -134,5 +143,6 @@ video.addEventListener("loadedmetadata", handleLoadedMetadata);
 video.addEventListener("durationchange", handleDurationChange);
 video.addEventListener("keydown", handleSpacePlay);
 video.addEventListener("timeupdate", handleTimeUpdate);
+video.addEventListener("ended", handleEnded);
 videoContainer.addEventListener("mouseover", handleMouseOver);
 videoContainer.addEventListener("mouseout", handleMouseOut);
