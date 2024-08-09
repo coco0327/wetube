@@ -1,6 +1,9 @@
 extends base.pug
 
 block content
+    div
+        video.recorder__video-preview
+        button.recorder__startBtn Start Recording
     if errorMessage
         span=errorMessage
     form(method="POST", enctype="multipart/form-data")
@@ -12,4 +15,4 @@ block content
         input(value="Save", type="submit")
 
 block script 
-    script(src="/assets/js/app.js")
+    script(src="/assets/js/recorder.js")
