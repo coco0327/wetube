@@ -72,13 +72,22 @@ const formatTime = (seconds) => {
   ).padStart(2, "0")}`;
 };
 
+// Check until total video time update
+const updateTotalTime = () => {
+  if (isFinite(video.duration) && video.duration > 0) {
+    totalTime.innerText = formatTime(video.duration);
+    timeline.max = Math.floor(video.duration);
+  } else {
+    setTimeout(updateTotalTime, 100); // 재시도
+  }
+};
+
 const handleLoadedMetadata = () => {
-  timeline.max = Math.floor(video.duration);
+  updateTotalTime();
 };
 
 const handleDurationChange = () => {
-  totalTime.innerText = formatTime(video.duration);
-  timeline.max = Math.floor(video.duration);
+  updateTotalTime();
 };
 
 const handleTimeUpdate = () => {
