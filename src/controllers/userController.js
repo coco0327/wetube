@@ -1,5 +1,4 @@
 import { User } from "../models/User";
-import { Video } from "../models/Video";
 import bcrypt from "bcrypt";
 
 export const getRegister = (req, res) => {
@@ -205,6 +204,7 @@ export const getChangePassword = (req, res) => {
     },
   } = req;
   if (socialOnly) {
+    req.flash("error", "Can't change the password");
     return res.redirect("/");
   }
   return res.render("change-password", { pageTitle: "Change Password" });
@@ -236,6 +236,7 @@ export const postChangePassword = async (req, res) => {
 
   user.password = newPassword;
   await user.save();
+  req.flash("info", "Password Updated.");
   return res.redirect("/users/logout");
 };
 
@@ -259,6 +260,7 @@ export const see = async (req, res) => {
 };
 
 export const logout = (req, res) => {
+  req.flash("info", "bye bye");
   req.session.destroy();
   return res.redirect("/");
 };

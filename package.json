@@ -4,7 +4,11 @@
   "description": "Youtube Cloning",
   "scripts": {
     "dev:server": "nodemon",
-    "dev:assets": "webpack"
+    "dev:assets": "webpack --mode=development --watch",
+    "build:server": "babel src -d build --ignore src/client",
+    "build:assets": "webpack --mode=production",
+    "build": "npm run build:server && npm run build:assets",
+    "start": "node build/init.js"
   },
   "repository": {
     "type": "git",
@@ -24,6 +28,7 @@
     "connect-mongo": "^5.1.0",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "express-flash": "^0.0.2",
     "express-session": "^1.18.0",
     "mongodb": "^6.8.0",
     "mongoose": "^8.5.0",
