@@ -183,9 +183,8 @@ export const deleteComment = async (req, res) => {
   } = req;
   const comment = await Comment.findOne({ _id: id }).populate("owner");
   if (String(comment.owner._id) !== String(loggedinId)) {
-    console.log(comment.owner._id);
-    console.log(loggedinId);
     return res.sendStatus(404);
   }
   await Comment.findByIdAndDelete(id);
+  return res.sendStatus(200);
 };
