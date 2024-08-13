@@ -105,10 +105,9 @@ const handleDownload = async () => {
   downloadFile(url, "My recording.mp4");
   downloadFile(thumbUrl, "My thumb.jpg");
 
-  console.log("delete");
-  ffmpeg.deleteFile(files.input);
-  ffmpeg.deleteFile(files.output);
-  ffmpeg.deleteFile(files.thumb);
+  await ffmpeg.deleteFile(files.input);
+  await ffmpeg.deleteFile(files.output);
+  await ffmpeg.deleteFile(files.thumb);
 
   URL.revokeObjectURL(video);
   URL.revokeObjectURL(url);
